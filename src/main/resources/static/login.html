@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — CampusX Portal</title>
+    <meta name="description" content="Sign in to your CampusX student account.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- ── LEFT VISUAL ── -->
+        <div class="auth-visual">
+            <div class="auth-visual-bg"></div>
+            <div
+                style="position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,206,201,0.15),transparent);border-radius:50%;">
+            </div>
+
+            <div class="auth-visual-content">
+                <div class="nav-logo">
+                    <div class="logo-icon">🎓</div>
+                    Campus<span style="color:var(--primary-light)">X</span>
+                </div>
+
+                <h2 class="auth-visual-title">
+                    Welcome<br>
+                    <span
+                        style="background:linear-gradient(135deg,var(--primary-light),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">back!</span>
+                </h2>
+
+                <p class="auth-visual-sub">Sign in to access your personalized dashboard, upcoming events, and
+                    registration history.</p>
+
+                <!-- Mini stats preview -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;">
+                    <div
+                        style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+                        <div id="loginEventCount" style="font-size:1.8rem;font-weight:800;color:var(--primary-light);">0
+                        </div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Active Events</div>
+                    </div>
+                    <div
+                        style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+                        <div id="loginStudentCount" style="font-size:1.8rem;font-weight:800;color:var(--accent);">0
+                        </div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Students</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── RIGHT FORM ── -->
+        <div class="auth-form-side">
+            <div class="auth-form-wrapper">
+
+                <h1 class="auth-form-title">Sign In</h1>
+                <p class="auth-form-sub">New to CampusX? <a href="register.html" class="form-link">Create a free
+                        account</a></p>
+
+                <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">College Email</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">✉</span>
+                            <input type="email" class="form-input" id="loginEmail" placeholder="rollno@college.edu"
+                                required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">Password</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">🔒</span>
+                            <input type="password" class="form-input" id="loginPassword"
+                                placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="form-input-toggle"
+                                onclick="togglePwd('loginPassword',this)">👁</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="form-check">
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" class="form-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-form" id="loginBtn">Sign In →</button>
+
+                </form>
+
+                <div class="auth-divider">or continue with</div>
+
+                <div class="social-auth">
+                    <button class="btn-social">
+                        <span>🔵</span> Google
+                    </button>
+                    <button class="btn-social">
+                        <span>🔷</span> Microsoft
+                    </button>
+                </div>
+
+                <p class="auth-footer-text">
+                    Don't have an account? <a href="register.html" class="form-link">Create one for free</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

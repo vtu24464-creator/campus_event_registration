@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — CampusX Portal</title>
+    <meta name="description" content="Join CampusX and never miss a campus event. Create your free student account.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- ── LEFT VISUAL ── -->
+        <div class="auth-visual">
+            <div class="auth-visual-bg"></div>
+            <!-- Decorative elements -->
+            <div
+                style="position:absolute;bottom:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(108,99,255,0.2),transparent);border-radius:50%;">
+            </div>
+            <div
+                style="position:absolute;top:20%;left:-40px;width:150px;height:150px;background:rgba(253,121,168,0.1);border-radius:50%;filter:blur(30px);">
+            </div>
+
+            <div class="auth-visual-content">
+                <div class="nav-logo" style="margin-bottom:0;">
+                    <div class="logo-icon">🎓</div>
+                    Campus<span style="color:var(--primary-light)">X</span>
+                </div>
+
+                <h2 class="auth-visual-title">
+                    Start your<br>
+                    <span
+                        style="background:linear-gradient(135deg,var(--primary-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">campus<br>journey</span>
+                </h2>
+
+                <p class="auth-visual-sub">Create your free account and get instant access to all campus events,
+                    workshops, and competitions.</p>
+
+                <div class="auth-features">
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">🚀</div>
+                        <span>Register for any event in one click</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">📊</div>
+                        <span>Personal dashboard to track all activities</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">🎓</div>
+                        <span>Earn digital certificates automatically</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">🔔</div>
+                        <span>Get notified before event deadlines</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── RIGHT FORM ── -->
+        <div class="auth-form-side">
+            <div class="auth-form-wrapper">
+
+                <h1 class="auth-form-title">Create Account</h1>
+                <p class="auth-form-sub">Already have an account? <a href="login.html" class="form-link">Sign in
+                        here</a></p>
+
+                <form id="registerForm" onsubmit="handleRegister(event)" novalidate>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First Name</label>
+                            <input type="text" class="form-input" id="firstName" placeholder="Arjun" required
+                                autocomplete="given-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last Name</label>
+                            <input type="text" class="form-input" id="lastName" placeholder="Sharma" required
+                                autocomplete="family-name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regEmail">College Email</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">✉</span>
+                            <input type="email" class="form-input" id="regEmail" placeholder="rollno@college.edu"
+                                required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="rollNo">Roll Number</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">🎫</span>
+                            <input type="text" class="form-input" id="rollNo" placeholder="e.g. CS22001" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="department">Department</label>
+                            <select class="form-select" id="department" required>
+                                <option value="" disabled selected>Select dept.</option>
+                                <option>Computer Science</option>
+                                <option>Electronics</option>
+                                <option>Mechanical</option>
+                                <option>Civil</option>
+                                <option>Information Technology</option>
+                                <option>MBA / Management</option>
+                                <option>Physics</option>
+                                <option>Mathematics</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="year">Year</label>
+                            <select class="form-select" id="year" required>
+                                <option value="" disabled selected>Select year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="PG">PG</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regPassword">Password</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">🔒</span>
+                            <input type="password" class="form-input" id="regPassword"
+                                placeholder="Create a strong password" required oninput="checkStrength(this.value)">
+                            <button type="button" class="form-input-toggle"
+                                onclick="togglePwd('regPassword',this)">👁</button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-segment" id="s1"></div>
+                                <div class="strength-segment" id="s2"></div>
+                                <div class="strength-segment" id="s3"></div>
+                                <div class="strength-segment" id="s4"></div>
+                            </div>
+                            <div class="strength-label" id="strengthLabel">Enter a password</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regConfirm">Confirm Password</label>
+                        <div class="form-input-group">
+                            <span class="form-input-icon">🔒</span>
+                            <input type="password" class="form-input" id="regConfirm" placeholder="Re-enter password"
+                                required>
+                            <button type="button" class="form-input-toggle"
+                                onclick="togglePwd('regConfirm',this)">👁</button>
+                        </div>
+                    </div>
+
+                    <div class="form-check" style="margin-bottom:24px;">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#" class="form-link">Terms of Service</a> and <a
+                                href="#" class="form-link">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="btn-form" id="regBtn">Create My Account →</button>
+
+                </form>
+
+                <div class="auth-divider">or continue with</div>
+
+                <div class="social-auth">
+                    <button class="btn-social">
+                        <span>🔵</span> Google
+                    </button>
+                    <button class="btn-social">
+                        <span>🔷</span> Microsoft
+                    </button>
+                </div>
+
+                <p class="auth-footer-text">
+                    Already registered? <a href="login.html" class="form-link">Sign in to your account</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

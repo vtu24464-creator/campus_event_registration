@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment — CampusX</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            padding: 24px 16px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 40% at 50% 0%, rgba(108, 99, 255, 0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 30% at 80% 80%, rgba(253, 203, 110, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* ── Card Shell ── */
+        .pay-shell {
+            width: 100%;
+            max-width: 560px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .pay-card {
+            background: var(--dark2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── Header ── */
+        .pay-header {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(253, 203, 110, 0.08));
+            border-bottom: 1px solid var(--border);
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pay-header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(108, 99, 255, 0.18);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .pay-event-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .pay-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Fee banner ── */
+        .pay-fee-banner {
+            background: linear-gradient(135deg, rgba(253, 203, 110, 0.18), rgba(253, 121, 168, 0.06));
+            border-bottom: 1px solid rgba(253, 203, 110, 0.25);
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pay-fee-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(253, 203, 110, 0.85);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .pay-fee-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: #FDCB6E;
+        }
+
+        /* ── Body sections ── */
+        .pay-body {
+            padding: 24px 28px;
+        }
+
+        .pay-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pay-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Student info ── */
+        .student-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+        }
+
+        .stu-row {
+            font-size: 0.85rem;
+        }
+
+        .stu-label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-bottom: 2px;
+        }
+
+        .stu-val {
+            font-weight: 600;
+        }
+
+        /* ── QR code block ── */
+        .qr-block {
+            text-align: center;
+            margin: 0 auto 20px;
+            max-width: 220px;
+        }
+
+        .qr-block img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 3px solid rgba(253, 203, 110, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            display: block;
+        }
+
+        .qr-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* ── Payment options ── */
+        .pay-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .pay-opt {
+            background: var(--dark3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .pay-opt:hover {
+            border-color: rgba(108, 99, 255, 0.4);
+        }
+
+        .pay-opt-icon {
+            font-size: 1.4rem;
+            width: 32px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .pay-opt-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .pay-opt-value {
+            font-size: 0.92rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            background: rgba(108, 99, 255, 0.14);
+            border: 1px solid rgba(108, 99, 255, 0.28);
+            border-radius: 6px;
+            color: var(--primary-light, #a29bfe);
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(108, 99, 255, 0.28);
+        }
+
+        /* ── Admin note ── */
+        .pay-note {
+            background: rgba(253, 203, 110, 0.07);
+            border: 1px solid rgba(253, 203, 110, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.82rem;
+            color: rgba(253, 203, 110, 0.9);
+            margin-bottom: 22px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .pay-note-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── No payment configured ── */
+        .pay-no-config {
+            text-align: center;
+            padding: 28px 20px;
+            background: rgba(248, 81, 73, 0.05);
+            border: 1px dashed rgba(248, 81, 73, 0.2);
+            border-radius: 12px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 22px;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0;
+        }
+
+        /* ── Transaction form ── */
+        .form-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--dark3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 11px 14px;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            margin-bottom: 14px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(108, 99, 255, 0.5);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .file-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .file-btn {
+            padding: 9px 16px;
+            background: var(--dark3);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            cursor: pointer;
+            font-family: inherit;
+            flex: 1;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .file-btn:hover {
+            border-color: rgba(253, 203, 110, 0.4);
+            color: var(--text);
+        }
+
+        .file-name {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Submit btn ── */
+        .btn-pay {
+            width: 100%;
+            background: linear-gradient(135deg, #6C63FF, #A29BFE);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: inherit;
+            margin-top: 4px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-pay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(108, 99, 255, 0.45);
+        }
+
+        .btn-pay:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── Messages ── */
+        .success-msg {
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid rgba(63, 185, 80, 0.3);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            color: #3FB950;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+            margin-top: 12px;
+        }
+
+        .error-msg {
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #F85149;
+            font-size: 0.82rem;
+            display: none;
+            margin-top: 8px;
+        }
+
+        /* ── Back link ── */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-muted);
+        }
+
+        /* ── Loading ── */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pay-shell">
+        <div class="pay-card" id="payCard">
+            <div class="loading">
+                <div class="spinner">⚙️</div>
+                <div style="margin-top:12px;font-size:0.88rem;">Loading payment details…</div>
+            </div>
+        </div>
+        <div class="back-link" onclick="window.location.href='/dashboard.html'">← Back to Dashboard</div>
+    </div>
+
+    <script>
+        'use strict';
+
+        /* ── Helpers ── */
+        function getToken() {
+            return localStorage.getItem('cx_token') ||
+                localStorage.getItem('campusx_token') ||
+                sessionStorage.getItem('campusx_token') || '';
+        }
+
+        function getAdminSettings() {
+            try {
+                const raw = localStorage.getItem('campusxPaymentSettings');
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) { return null; }
+        }
+
+        function copyText(t) {
+            navigator.clipboard.writeText(t)
+                .then(() => showToastMsg('✅ Copied!'))
+                .catch(() => alert('Copy: ' + t));
+        }
+
+        function showToastMsg(msg) {
+            const el = document.createElement('div');
+            el.textContent = msg;
+            Object.assign(el.style, {
+                position: 'fixed', bottom: '24px', right: '24px',
+                background: 'rgba(108,99,255,0.9)', color: '#fff',
+                padding: '10px 20px', borderRadius: '10px',
+                fontFamily: 'Inter,sans-serif', fontSize: '0.85rem',
+                fontWeight: '600', zIndex: '9999', boxShadow: '0 4px 20px rgba(0,0,0,0.4)'
+            });
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 2500);
+        }
+
+        /* ── Fetch registration detail ── */
+        const params = new URLSearchParams(location.search);
+        const regId = params.get('regId');
+
+        async function loadPaymentPage() {
+            const card = document.getElementById('payCard');
+
+            if (!regId) {
+                card.innerHTML = renderError('No registration ID found. Please go back and register again.');
+                setTimeout(() => window.location.href = '/dashboard.html', 3000);
+                return;
+            }
+
+            let reg = null, adminSettings = null;
+
+            try {
+                /* 1 ── Fetch registration + event info from backend */
+                const regRes = await fetch(`/api/registrations/${regId}/detail`, {
+                    headers: { 'Authorization': 'Bearer ' + getToken() }
+                });
+                if (!regRes.ok) throw new Error('Failed to load registration details (status ' + regRes.status + ')');
+                reg = await regRes.json();
+
+                /* 2 ── Fetch admin payment settings — try backend first, then localStorage */
+                try {
+                    const setRes = await fetch('/api/admin/payment-settings');
+                    if (setRes.ok) {
+                        const backendSettings = await setRes.json();
+                        adminSettings = {
+                            accountName: backendSettings.accountName,
+                            upiId: backendSettings.upiId,
+                            upiPhone: backendSettings.upiPhone,
+                            bankName: backendSettings.bankName,
+                            bankAccount: backendSettings.bankAccount,
+                            ifsc: backendSettings.ifscCode,
+                            qrUrl: backendSettings.qrCodePath,
+                            payNote: backendSettings.payNote || ''
+                        };
+                    }
+                } catch (e) { /* fall through to localStorage */ }
+
+                /* Fallback to localStorage (populated when admin saves settings) */
+                if (!adminSettings || !adminSettings.upiId) {
+                    adminSettings = getAdminSettings();
+                }
+
+                renderPaymentPage(reg, adminSettings);
+            } catch (err) {
+                card.innerHTML = renderError(err.message + '. Please try again from your dashboard.');
+            }
+        }
+
+        /* ── Render payment page ── */
+        function renderPaymentPage(reg, s) {
+            const card = document.getElementById('payCard');
+
+            const catIcon = { technical: '💻', hackathon: '⚡', workshop: '🎨', sports: '🏆', academic: '📚', cultural: '🎵' };
+            const icon = catIcon[(reg.category || '').toLowerCase()] || '🎓';
+
+            const hasQr = s?.qrUrl && s.qrUrl.trim();
+            const hasUpi = s?.upiId && s.upiId.trim();
+            const hasPhone = s?.upiPhone && s.upiPhone.trim();
+            const hasBank = s?.bankAccount && s.bankAccount.trim();
+            const hasNote = s?.payNote && s.payNote.trim();
+            const hasName = s?.accountName && s.accountName.trim();
+
+            const noConfig = !s || (!hasUpi && !hasQr && !hasBank);
+
+            /* QR section */
+            const qrHtml = hasQr ? `
+                <div class="qr-block">
+                    <img src="${s.qrUrl}" alt="Payment QR Code" onerror="this.style.display='none'">
+                    <div class="qr-caption">📷 Scan & Pay via UPI</div>
+                </div>` : '';
+
+            /* Payment options */
+            const optionsHtml = noConfig ? `
+                <div class="pay-no-config">
+                    ⚠️ Admin has not configured payment details yet.<br>
+                    Please contact your administrator or come back later.
+                </div>` : `
+                <div class="pay-options">
+                    ${hasName ? `
+                    <div class="pay-opt">
+                        <div class="pay-opt-icon">👤</div>
+                        <div style="flex:1;">
+                            <div class="pay-opt-label">Payee Name</div>
+                            <div class="pay-opt-value">${s.accountName}</div>
+                        </div>
+                    </div>` : ''}
+
+                    ${hasUpi ? `
+                    <div class="pay-opt">
+                        <div class="pay-opt-icon">📱</div>
+                        <div style="flex:1;">
+                            <div class="pay-opt-label">UPI ID</div>
+                            <div class="pay-opt-value">
+                                ${s.upiId}
+                                <button class="copy-btn" onclick="copyText('${s.upiId}')">Copy</button>
+                            </div>
+                        </div>
+                    </div>` : ''}
+
+                    ${hasPhone ? `
+                    <div class="pay-opt">
+                        <div class="pay-opt-icon">📲</div>
+                        <div style="flex:1;">
+                            <div class="pay-opt-label">UPI / Phone Pay</div>
+                            <div class="pay-opt-value">
+                                ${s.upiPhone}
+                                <button class="copy-btn" onclick="copyText('${s.upiPhone}')">Copy</button>
+                            </div>
+                        </div>
+                    </div>` : ''}
+
+                    ${hasBank ? `
+                    <div class="pay-opt">
+                        <div class="pay-opt-icon">🏦</div>
+                        <div style="flex:1;">
+                            <div class="pay-opt-label">Bank Transfer</div>
+                            <div class="pay-opt-value" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                                <span style="font-size:0.82rem;">${s.bankName || ''}</span>
+                                <span>A/C: ${s.bankAccount} &nbsp;<button class="copy-btn" onclick="copyText('${s.bankAccount}')">Copy</button></span>
+                                ${s.ifsc ? `<span style="font-size:0.8rem;color:var(--text-muted);">IFSC: ${s.ifsc}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>` : ''}
+                </div>`;
+
+            /* Admin note */
+            const noteHtml = hasNote ? `
+                <div class="pay-note">
+                    <span class="pay-note-icon">📋</span>
+                    <span>${s.payNote}</span>
+                </div>` : '';
+
+            card.innerHTML = `
+                <!-- Header -->
+                <div class="pay-header">
+                    <div class="pay-header-icon">${icon}</div>
+                    <div>
+                        <div class="pay-event-title">${reg.eventTitle || 'Event Payment'}</div>
+                        <div class="pay-meta">Registration #${reg.regId} &nbsp;·&nbsp; ${new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
+                    </div>
+                </div>
+
+                <!-- Fee banner -->
+                <div class="pay-fee-banner">
+                    <div class="pay-fee-label">Registration Fee</div>
+                    <div class="pay-fee-amount">₹${parseFloat(reg.registrationFee || 0).toLocaleString('en-IN')}</div>
+                </div>
+
+                <!-- Body -->
+                <div class="pay-body">
+
+                    <!-- Student Details -->
+                    <div class="pay-section-title">Student Details</div>
+                    <div class="student-card">
+                        <div class="stu-row">
+                            <div class="stu-label">Name</div>
+                            <div class="stu-val">${reg.firstName || ''} ${reg.lastName || ''}</div>
+                        </div>
+                        <div class="stu-row">
+                            <div class="stu-label">Roll Number</div>
+                            <div class="stu-val">${reg.rollNumber || '—'}</div>
+                        </div>
+                        <div class="stu-row">
+                            <div class="stu-label">Department</div>
+                            <div class="stu-val">${reg.department || '—'}</div>
+                        </div>
+                        <div class="stu-row">
+                            <div class="stu-label">Event Category</div>
+                            <div class="stu-val">${icon} ${(reg.category || '').charAt(0).toUpperCase() + (reg.category || '').slice(1)}</div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="pay-section-title">Pay Here</div>
+
+                    ${qrHtml}
+                    ${noteHtml}
+                    ${optionsHtml}
+
+                    <hr class="divider">
+
+                    <!-- Confirm Payment -->
+                    <div class="pay-section-title">Submit Confirmation</div>
+
+                    <label class="form-label">Transaction ID / UTR Number *</label>
+                    <input class="form-input" type="text" id="txnInput"
+                        placeholder="Enter Transaction ID after payment" maxlength="100" required>
+
+                    <label class="form-label">Upload Payment Screenshot <span style="color:var(--text-dim);font-weight:400;">(optional)</span></label>
+                    <div class="file-wrap">
+                        <button class="file-btn" onclick="document.getElementById('screenshotFile').click()">📎 Choose Image</button>
+                        <span class="file-name" id="screenshotName">No file selected</span>
+                        <input type="file" id="screenshotFile" accept="image/*" style="display:none;"
+                               onchange="document.getElementById('screenshotName').textContent = this.files[0]?.name || 'No file selected'">
+                    </div>
+
+                    <button class="btn-pay" id="submitBtn" onclick="submitPayment()">
+                        🔒 Submit Payment
+                    </button>
+
+                    <div class="success-msg" id="successMsg"></div>
+                    <div class="error-msg"   id="errorMsg"></div>
+                </div>
+            `;
+        }
+
+        function renderError(message) {
+            return `<div style="padding:40px 28px;text-align:center;color:var(--text-muted);">
+                        <div style="font-size:2.5rem;margin-bottom:14px;">❌</div>
+                        <p style="font-size:0.9rem;">${message}</p>
+                    </div>`;
+        }
+
+        /* ── Submit payment ── */
+        async function submitPayment() {
+            const txn = document.getElementById('txnInput')?.value.trim();
+            const btn = document.getElementById('submitBtn');
+            const errEl = document.getElementById('errorMsg');
+            const sucEl = document.getElementById('successMsg');
+
+            if (!txn) {
+                errEl.innerText = '❌ Transaction ID is required.';
+                errEl.style.display = 'block';
+                return;
+            }
+
+            errEl.style.display = 'none';
+            btn.disabled = true;
+            btn.textContent = '⏳ Submitting…';
+
+            try {
+                const res = await fetch(`/api/registrations/${regId}/payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + getToken()
+                    },
+                    body: JSON.stringify({ transaction_id: txn })
+                });
+
+                if (res.ok) {
+                    sucEl.innerHTML = '🎉 Payment submitted successfully!<br><small style="opacity:0.8;">Admin will verify within 24 hours. Redirecting to dashboard…</small>';
+                    sucEl.style.display = 'block';
+                    btn.style.display = 'none';
+                    setTimeout(() => window.location.href = '/dashboard.html', 3500);
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    throw new Error(data.error || 'Submission failed. Please try again.');
+                }
+            } catch (err) {
+                errEl.innerText = '❌ ' + err.message;
+                errEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = '🔒 Submit Payment';
+            }
+        }
+
+        /* ── Init ── */
+        if (!getToken()) {
+            window.location.href = '/login.html';
+        } else {
+            loadPaymentPage();
+        }
+    </script>
+</body>
+
+</html>

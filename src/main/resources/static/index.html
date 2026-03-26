@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusX — Academic Event & Registration Portal</title>
+    <meta name="description"
+        content="Discover, register, and manage campus events all in one place. The modern academic event portal for students.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <header class="navbar" id="navbar">
+        <div class="nav-logo">
+            <div class="logo-icon">🎓</div>
+            Campus<span>X</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="events.html">Events</a>
+            <a href="#features">About</a>
+            <a href="admin-login.html" style="color:rgba(248,81,73,0.85);font-size:0.85rem;">&#x1F510; Admin</a>
+        </nav>
+
+        <div class="nav-cta">
+            <a href="login.html" class="btn-ghost">Login</a>
+            <a href="register.html" class="btn-primary">Get Started →</a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+
+        <div class="hero-content">
+            <!-- Left Text -->
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    Spring Semester 2026 — Live Now
+                </div>
+
+                <h1 class="hero-title">
+                    Discover &amp;<br>
+                    <span class="gradient-text">Register Campus</span><br>
+                    Events Easily
+                </h1>
+
+                <p class="hero-subtitle">
+                    Your one-stop portal to explore all academic, technical, cultural, and sports events.
+                    Register in one click, track your schedule, and never miss a moment.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="events.html" class="btn-hero btn-hero-primary">
+                        🚀 Explore Events
+                    </a>
+                    <a href="register.html" class="btn-hero btn-hero-secondary">
+                        Create Account
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-num" id="heroEventCount" data-target="48">0</div>
+                        <div class="stat-label">Events</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num" id="heroStudentCount" data-target="1200">0</div>
+                        <div class="stat-label">Students</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num" id="heroClubCount" data-target="16">0</div>
+                        <div class="stat-label">Clubs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num" id="heroDeptCount" data-target="8">0</div>
+                        <div class="stat-label">Departments</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="hero-visual">
+                <div class="float-card float-card-1">
+                    <div class="float-icon">📅</div>
+                    <div>
+                        <div style="font-weight:600;font-size:0.82rem;">Next Event</div>
+                        <div style="color:var(--text-muted);font-size:0.75rem;">Tech Symposium · Mar 15</div>
+                    </div>
+                </div>
+
+                <div class="events-preview-card">
+                    <div class="preview-header">
+                        <h3>🔥 Trending Events</h3>
+                        <span class="preview-badge">Live</span>
+                    </div>
+
+                    <div class="mini-event" onclick="location.href='events.html'">
+                        <div class="mini-event-icon" style="background:rgba(108,99,255,0.15);">💻</div>
+                        <div class="mini-event-info">
+                            <h4>Tech Symposium 2026</h4>
+                            <p>📅 March 15 · Auditorium A</p>
+                        </div>
+                        <span class="mini-event-tag"
+                            style="background:rgba(108,99,255,0.15);color:var(--primary-light);">Tech</span>
+                    </div>
+
+                    <div class="mini-event" onclick="location.href='events.html'">
+                        <div class="mini-event-icon" style="background:rgba(253,121,168,0.15);">🎭</div>
+                        <div class="mini-event-info">
+                            <h4>Cultural Fest</h4>
+                            <p>📅 March 20 · Open Ground</p>
+                        </div>
+                        <span class="mini-event-tag"
+                            style="background:rgba(253,121,168,0.15);color:var(--accent);">Culture</span>
+                    </div>
+
+                    <div class="mini-event" onclick="location.href='events.html'">
+                        <div class="mini-event-icon" style="background:rgba(0,206,201,0.15);">⚡</div>
+                        <div class="mini-event-info">
+                            <h4>Hackathon 24hrs</h4>
+                            <p>📅 April 02 · Lab Complex</p>
+                        </div>
+                        <span class="mini-event-tag"
+                            style="background:rgba(0,206,201,0.15);color:var(--accent2);">Hack</span>
+                    </div>
+
+                    <div class="mini-event" onclick="location.href='events.html'">
+                        <div class="mini-event-icon" style="background:rgba(253,203,110,0.15);">🏆</div>
+                        <div class="mini-event-info">
+                            <h4>Sports Championship</h4>
+                            <p>📅 April 10 · Sports Ground</p>
+                        </div>
+                        <span class="mini-event-tag"
+                            style="background:rgba(253,203,110,0.15);color:var(--warning);">Sports</span>
+                    </div>
+                </div>
+
+                <div class="float-card float-card-2">
+                    <div class="float-icon">✅</div>
+                    <div>
+                        <div style="font-weight:600;font-size:0.82rem;">You're Registered!</div>
+                        <div style="color:var(--text-muted);font-size:0.75rem;">Hackathon 24hrs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CATEGORIES ── -->
+    <div class="categories-strip">
+        <div class="categories-inner">
+            <div class="cat-chip active">🌟 All Events <span class="cat-count" id="countAll">0</span></div>
+            <div class="cat-chip">💻 Technical <span class="cat-count" id="countTechnical">0</span></div>
+            <div class="cat-chip">🎭 Cultural <span class="cat-count" id="countCultural">0</span></div>
+            <div class="cat-chip">⚡ Hackathons <span class="cat-count" id="countHackathon">0</span></div>
+            <div class="cat-chip">🏆 Sports <span class="cat-count" id="countSports">0</span></div>
+            <div class="cat-chip">🎓 Academic <span class="cat-count" id="countAcademic">0</span></div>
+            <div class="cat-chip">🎨 Workshops <span class="cat-count" id="countWorkshop">0</span></div>
+        </div>
+    </div>
+
+    <!-- ── FEATURED EVENTS ── -->
+    <div style="background:var(--dark);">
+        <div class="section" id="featured">
+            <div class="section-label">⭐ Don't Miss</div>
+            <h2 class="section-title">Featured Events</h2>
+            <p class="section-sub">Hand-picked events that deserve your attention this semester.</p>
+
+            <div class="highlight-grid">
+                <!-- Big featured card -->
+                <div class="featured-event-card" onclick="location.href='events.html'">
+                    <div class="featured-bg"></div>
+                    <div class="featured-pattern"></div>
+                    <!-- Decorative circles -->
+                    <div
+                        style="position:absolute;top:40px;right:40px;width:200px;height:200px;background:radial-gradient(circle,rgba(108,99,255,0.25),transparent);border-radius:50%;">
+                    </div>
+                    <div
+                        style="position:absolute;top:20px;right:20px;width:100px;height:100px;background:rgba(253,121,168,0.15);border-radius:50%;filter:blur(20px);">
+                    </div>
+                    <div style="position:absolute;top:60px;right:80px;font-size:5rem;opacity:0.6;">💻</div>
+
+                    <div class="featured-bottom">
+                        <span class="featured-tag">🏆 Main Event</span>
+                        <h2 class="featured-title">Annual Tech Symposium 2026</h2>
+                        <p class="featured-desc">Join 500+ students, industry experts, and innovators for a 2-day deep
+                            dive into emerging technologies, AI, and the future of engineering.</p>
+                        <div class="featured-actions">
+                            <a href="events.html" class="btn-primary" style="font-size:0.88rem;">Register Now →</a>
+                            <span class="featured-info">📅 March 15, 2026</span>
+                            <span class="featured-info">📍 Main Auditorium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side events -->
+                <div class="side-events">
+                    <div class="side-event-card" onclick="location.href='events.html'">
+                        <div class="side-event-icon" style="background:rgba(253,121,168,0.15);">🎭</div>
+                        <div class="side-event-info">
+                            <div class="side-event-title">Cultural Extravaganza</div>
+                            <div class="side-event-meta">📅 March 20 · 🎟 Free Entry</div>
+                        </div>
+                        <div class="side-event-arrow">›</div>
+                    </div>
+
+                    <div class="side-event-card" onclick="location.href='events.html'">
+                        <div class="side-event-icon" style="background:rgba(0,206,201,0.15);">⚡</div>
+                        <div class="side-event-info">
+                            <div class="side-event-title">24-Hour Hackathon</div>
+                            <div class="side-event-meta">📅 April 02 · 🏆 ₹50,000 Prize</div>
+                        </div>
+                        <div class="side-event-arrow">›</div>
+                    </div>
+
+                    <div class="side-event-card" onclick="location.href='events.html'">
+                        <div class="side-event-icon" style="background:rgba(253,203,110,0.15);">🏆</div>
+                        <div class="side-event-info">
+                            <div class="side-event-title">Inter-College Sports Meet</div>
+                            <div class="side-event-meta">📅 April 10 · 🏅 Multiple sports</div>
+                        </div>
+                        <div class="side-event-arrow">›</div>
+                    </div>
+
+                    <div class="side-event-card" onclick="location.href='events.html'">
+                        <div class="side-event-icon" style="background:rgba(108,99,255,0.15);">🎨</div>
+                        <div class="side-event-info">
+                            <div class="side-event-title">UI/UX Design Workshop</div>
+                            <div class="side-event-meta">📅 April 15 · 🎓 Certificate</div>
+                        </div>
+                        <div class="side-event-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FEATURES ── -->
+    <section class="features-section" id="features">
+        <div class="section">
+            <div style="text-align:center;margin-bottom:0">
+                <div class="section-label" style="justify-content:center">✨ Why CampusX</div>
+                <h2 class="section-title">Everything you need in one place</h2>
+                <p class="section-sub" style="margin:0 auto">Your complete campus companion — from event discovery to
+                    post-event certificates.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">Smart Discovery</div>
+                    <p class="feature-text">Filter events by category, date, department, or availability to find exactly
+                        what interests you.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Instant Registration</div>
+                    <p class="feature-text">One-click event registration with instant confirmation and automated
+                        reminders.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Personal Dashboard</div>
+                    <p class="feature-text">Track all your registered events, upcoming schedules, and earn participation
+                        certificates.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <div class="feature-title">Smart Alerts</div>
+                    <p class="feature-text">Never miss an event with timely reminders for registration deadlines and
+                        event updates.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-title">E-Certificates</div>
+                    <p class="feature-text">Automatically receive verifiable digital certificates for participated
+                        events.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Mobile Friendly</div>
+                    <p class="feature-text">Fully responsive design — access your portal from any device, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA BANNER ── -->
+    <section
+        style="padding:0;background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+        <div
+            style="max-width:1200px;margin:0 auto;padding:60px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;">
+            <div>
+                <h2 style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;margin-bottom:8px;">Ready to
+                    get started?</h2>
+                <p style="color:var(--text-muted);font-size:1rem;">Join 1200+ students already using CampusX.</p>
+            </div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                <a href="register.html" class="btn-primary"
+                    style="font-size:1rem;padding:14px 30px;border-radius:var(--radius);">Create Free Account →</a>
+                <a href="events.html" class="btn-ghost"
+                    style="font-size:1rem;padding:13px 30px;border-radius:var(--radius);display:inline-flex;align-items:center;">Browse
+                    Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <div class="logo-icon">🎓</div>
+                    Campus<span style="color:var(--primary-light)">X</span>
+                </div>
+                <p class="footer-desc">The modern academic event portal connecting students with opportunities,
+                    experiences, and communities on campus.</p>
+                <div class="footer-social">
+                    <div class="social-btn">𝕏</div>
+                    <div class="social-btn">in</div>
+                    <div class="social-btn">ig</div>
+                    <div class="social-btn">gh</div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Portal</h4>
+                <ul>
+                    <li><a href="events.html">All Events</a></li>
+                    <li><a href="dashboard.html">My Dashboard</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="events.html">Technical</a></li>
+                    <li><a href="events.html">Cultural</a></li>
+                    <li><a href="events.html">Sports</a></li>
+                    <li><a href="events.html">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>College</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 CampusX Portal. All rights reserved.</span>
+            <span>Made with ❤️ for students</span>
+        </div>
+    </footer>
+
+    <!-- ── TOAST ── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

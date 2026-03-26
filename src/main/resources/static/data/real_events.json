@@ -1,0 +1,177 @@
+[
+    {
+        "id": "ext-1",
+        "title": "Smart India Hackathon 2026",
+        "organizer": "Ministry of Education, Govt. of India",
+        "category": "hackathon",
+        "deadline": "2026-04-30",
+        "prize_pool": "₹1,00,00,000+",
+        "description": "India's biggest hackathon — 36-hour non-stop coding event with problem statements from 30+ Ministries and Industries. Open to all college students.",
+        "tags": [
+            "national",
+            "government",
+            "coding",
+            "innovation"
+        ],
+        "url": "https://www.sih.gov.in/",
+        "icon": "🇮🇳",
+        "level": "National"
+    },
+    {
+        "id": "ext-2",
+        "title": "Devfolio Hackathon — Build for Bharat",
+        "organizer": "Devfolio",
+        "category": "hackathon",
+        "deadline": "2026-03-25",
+        "prize_pool": "₹10,00,000",
+        "description": "Build products that solve real-world problems in India. Fintech, AgriTech, HealthTech and more. Online + offline format. Teams of 2-4.",
+        "tags": [
+            "startup",
+            "product",
+            "india-focused"
+        ],
+        "url": "https://devfolio.co/hackathons",
+        "icon": "🛠️",
+        "level": "National"
+    },
+    {
+        "id": "ext-3",
+        "title": "HackerEarth April Circuits",
+        "organizer": "HackerEarth",
+        "category": "technical",
+        "deadline": "2026-04-10",
+        "prize_pool": "₹2,00,000",
+        "description": "Monthly competitive programming contest — solve algorithmic problems ranging from easy to hard. Rated event that boosts your global ranking.",
+        "tags": [
+            "competitive-programming",
+            "algorithms",
+            "online"
+        ],
+        "url": "https://www.hackerearth.com/challenges/",
+        "icon": "💡",
+        "level": "International"
+    },
+    {
+        "id": "ext-4",
+        "title": "ICPC 2026 — South India Regionals",
+        "organizer": "ICPC Foundation",
+        "category": "technical",
+        "deadline": "2026-05-01",
+        "prize_pool": "Scholarships + Awards",
+        "description": "The International Collegiate Programming Contest (ICPC) is the world's premier algorithmic programming competition. Teams of 3 compete in timed problem sets.",
+        "tags": [
+            "algorithms",
+            "world-stage",
+            "competitive"
+        ],
+        "url": "https://icpc.global/",
+        "icon": "🌐",
+        "level": "International"
+    },
+    {
+        "id": "ext-5",
+        "title": "NASA Space Apps Challenge",
+        "organizer": "NASA",
+        "category": "hackathon",
+        "deadline": "2026-05-15",
+        "prize_pool": "Global Recognition + Trip to NASA",
+        "description": "A global hackathon where participants use NASA's open data to develop solutions to challenges on Earth and in space. 48-hour online event.",
+        "tags": [
+            "space",
+            "data-science",
+            "climate",
+            "global"
+        ],
+        "url": "https://www.spaceappschallenge.org/",
+        "icon": "🚀",
+        "level": "International"
+    },
+    {
+        "id": "ext-6",
+        "title": "CodeChef SnackDown 2026",
+        "organizer": "CodeChef",
+        "category": "technical",
+        "deadline": "2026-04-20",
+        "prize_pool": "₹5,00,000",
+        "description": "One of India's most prestigious team programming contests. Preliminary rounds online, finals offline in Bengaluru. Open to teams of 2.",
+        "tags": [
+            "competitive-programming",
+            "team",
+            "coding"
+        ],
+        "url": "https://www.codechef.com/snackdown",
+        "icon": "🍴",
+        "level": "National"
+    },
+    {
+        "id": "ext-7",
+        "title": "Google Summer of Code 2026",
+        "organizer": "Google",
+        "category": "academic",
+        "deadline": "2026-04-02",
+        "prize_pool": "$1,500 – $6,600 USD Stipend",
+        "description": "A global program where students contribute to open-source projects under guidance of mentors from 200+ organizations. Work remotely over the summer.",
+        "tags": [
+            "open-source",
+            "mentorship",
+            "remote",
+            "summer"
+        ],
+        "url": "https://summerofcode.withgoogle.com/",
+        "icon": "🔍",
+        "level": "International"
+    },
+    {
+        "id": "ext-8",
+        "title": "Flipkart GRiD 6.0",
+        "organizer": "Flipkart",
+        "category": "hackathon",
+        "deadline": "2026-06-01",
+        "prize_pool": "₹5,00,000 + PPO",
+        "description": "Flipkart's flagship engineering challenge for students. Solve problems in Supply Chain, Machine Learning, and Software Engineering. Top performers get Pre-Placement Offers.",
+        "tags": [
+            "e-commerce",
+            "ML",
+            "engineering",
+            "PPO"
+        ],
+        "url": "https://dare2compete.com/hackathon",
+        "icon": "🛒",
+        "level": "National"
+    },
+    {
+        "id": "ext-9",
+        "title": "Microsoft Imagine Cup 2026",
+        "organizer": "Microsoft",
+        "category": "hackathon",
+        "deadline": "2026-03-30",
+        "prize_pool": "$100,000 USD",
+        "description": "Empowering tech innovators to change the world. Use Microsoft Azure and AI to tackle global challenges in education, environment, health, and more.",
+        "tags": [
+            "azure",
+            "AI",
+            "world",
+            "Microsoft"
+        ],
+        "url": "https://imaginecup.microsoft.com/",
+        "icon": "🪟",
+        "level": "International"
+    },
+    {
+        "id": "ext-10",
+        "title": "Hack This Fall 2026",
+        "organizer": "Hack This Fall",
+        "category": "hackathon",
+        "deadline": "2026-09-15",
+        "prize_pool": "₹3,00,000",
+        "description": "India's community-first hackathon for college students. Build real-world projects, network with mentors and recruiters, win prizes and job offers.",
+        "tags": [
+            "community",
+            "beginner-friendly",
+            "hybrid"
+        ],
+        "url": "https://hackthisfall.tech/",
+        "icon": "🍂",
+        "level": "National"
+    }
+]

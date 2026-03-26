@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events — CampusX Portal</title>
+    <meta name="description"
+        content="Browse and register for all upcoming campus events — technical, cultural, sports, and more.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <header class="navbar" id="navbar">
+        <div class="nav-logo">
+            <div class="logo-icon">🎓</div>
+            Campus<span>X</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="admin-login.html" style="color:rgba(248,81,73,0.8);font-size:0.85rem;">Admin</a>
+        </nav>
+        <div class="nav-cta" id="navAuth">
+            <a href="login.html" class="btn-ghost">Login</a>
+            <a href="register.html" class="btn-primary">Get Started →</a>
+        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </header>
+
+    <!-- ── PAGE HEADER ── -->
+    <div style="padding:100px 60px 40px;background:var(--dark2);border-bottom:1px solid var(--border);">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="section-label">🗓 All Semester Events</div>
+            <h1 class="section-title" style="margin-bottom:12px;">Upcoming Events</h1>
+            <p class="section-sub">Find your next opportunity — from hackathons to cultural fests.</p>
+        </div>
+    </div>
+
+    <!-- ── TABS ── -->
+    <div style="background:var(--dark2);border-bottom:1px solid var(--border);">
+        <div style="max-width:1200px;margin:0 auto;padding:0 60px;display:flex;gap:0;">
+            <button id="tabCampus" class="events-tab active" onclick="switchTab('campus')">🏫 Campus Events</button>
+            <button id="tabExternal" class="events-tab" onclick="switchTab('external')">🌍 External Events</button>
+        </div>
+    </div>
+
+    <!-- ── FILTER & SEARCH ── -->
+    <div id="campusFilters"
+        style="background:var(--dark2);padding:16px 60px 20px;border-bottom:1px solid var(--border);">
+        <div style="max-width:1200px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+
+            <div class="search-bar" style="flex:1;min-width:220px;">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search events..." autocomplete="off">
+            </div>
+
+            <select id="catFilter" class="form-select" style="width:160px;">
+                <option value="all">All Categories</option>
+                <option value="technical">💻 Technical</option>
+                <option value="cultural">🎭 Cultural</option>
+                <option value="hackathon">⚡ Hackathon</option>
+                <option value="sports">🏆 Sports</option>
+                <option value="academic">🎓 Academic</option>
+                <option value="workshop">🎨 Workshop</option>
+            </select>
+
+            <select id="dateFilter" class="form-select" style="width:160px;">
+                <option value="all">Any Date</option>
+                <option value="2026-01">January 2026</option>
+                <option value="2026-02">February 2026</option>
+                <option value="2026-03">March 2026</option>
+                <option value="2026-04">April 2026</option>
+                <option value="2026-05">May 2026</option>
+                <option value="2026-06">June 2026</option>
+            </select>
+
+            <select id="statusFilter" class="form-select" style="width:160px;">
+                <option value="all">All Status</option>
+                <option value="open">Open</option>
+                <option value="filling">Filling Fast</option>
+                <option value="full">Full</option>
+            </select>
+
+        </div>
+    </div>
+
+    <!-- ── CAMPUS EVENTS GRID ── -->
+    <div id="campusPanel" style="background:var(--dark);">
+        <div class="section">
+            <div class="events-header">
+                <p id="resultsCount" style="color:var(--text-muted);font-size:0.9rem;">Showing <strong
+                        id="countNum">0</strong> events</p>
+                <div style="display:flex;gap:8px;">
+                    <button class="btn-ghost" style="font-size:0.82rem;padding:7px 14px;" id="sortBtn">Sort: Date
+                        ↑</button>
+                </div>
+            </div>
+
+            <div class="events-grid" id="eventsGrid">
+                <!-- Cards loaded from API by initEventsFromAPI() in main.js -->
+                <div id="eventsLoading"
+                    style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">
+                    <div style="font-size:2.5rem;margin-bottom:12px;">🔄</div>
+                    <div>Loading events from database...</div>
+                </div>
+            </div>
+
+            <!-- Empty state -->
+            <div id="emptyState" style="display:none;text-align:center;padding:80px 20px;">
+                <div style="font-size:4rem;margin-bottom:16px;">🔍</div>
+                <h3 style="font-size:1.2rem;margin-bottom:8px;">No events found</h3>
+                <p style="color:var(--text-muted);font-size:0.9rem;">Try changing your search or filters.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── EXTERNAL EVENTS PANEL ── -->
+    <div id="externalPanel" style="display:none;background:var(--dark);">
+        <div class="section">
+            <div style="margin-bottom:32px;">
+                <div class="section-label">🌐 Real Competitions</div>
+                <h2 class="section-title" style="font-size:1.6rem;margin-bottom:8px;">National & International Events
+                </h2>
+                <p style="color:var(--text-muted);font-size:0.9rem;">Curated list of real hackathons & competitions you
+                    can apply to right now.</p>
+            </div>
+            <div id="externalGrid"
+                style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;">
+                <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">
+                    <div style="font-size:2rem;margin-bottom:10px;animation:spin 1s linear infinite;">🔄</div>
+                    <div>Loading external events...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REGISTRATION MODAL ── -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Event Registration</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-event-preview">
+                    <div class="modal-event-icon" id="modalIcon" style="background:rgba(108,99,255,0.15);">🎓</div>
+                    <div class="modal-event-info">
+                        <h3 id="modalTitle">Event Name</h3>
+                        <p id="modalMeta">📅 Date · 📍 Venue · 🏷 Category</p>
+                    </div>
+                </div>
+
+                <form id="regForm" onsubmit="submitRegistration(event)">
+                    <input type="hidden" id="rEventId">
+                    <input type="hidden" id="rFee" value="0">
+                    <input type="hidden" id="rEventTitle" value="">
+                    <!-- Fee banner (shown for paid events) -->
+                    <div id="rFeeBanner"
+                        style="display:none;background:rgba(253,203,110,0.1);border:1px solid rgba(253,203,110,0.3);border-radius:10px;padding:10px 14px;margin-bottom:16px;display:none;">
+                        <span style="font-size:0.8rem;color:rgba(253,203,110,0.8);font-weight:700;">&#x1F4B3; PAID EVENT
+                            &mdash; Registration Fee:</span>
+                        <span id="rFeeDisplay"
+                            style="font-size:1.1rem;font-weight:800;color:#FDCB6E;margin-left:8px;"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-input" id="rName" placeholder="Your full name" required
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Roll Number *</label>
+                            <input type="text" class="form-input" id="rRoll" placeholder="e.g. CS22001" required
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" id="rEmail" placeholder="your@college.edu" required
+                            readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" id="rPhone" placeholder="+91 00000 00000">
+                    </div>
+
+                    <div class="modal-footer" style="padding:0;border:none;margin-top:24px;">
+                        <button type="button" class="btn-ghost" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn-primary" id="regSubmitBtn">Confirm Registration →</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ── EVENT DETAIL MODAL ── -->
+    <div class="event-detail-overlay" id="eventDetailOverlay" onclick="closeEventDetail(event)">
+        <div class="event-detail-modal" id="eventDetailModal">
+            <button class="event-detail-close" onclick="closeEventDetail()">✕</button>
+
+            <!-- Banner -->
+            <div class="event-detail-banner" id="detailBanner">
+                <div class="event-detail-banner-overlay"></div>
+                <div class="event-detail-banner-content">
+                    <span id="detailCatChip" class="detail-cat-chip"></span>
+                    <span id="detailFeaturedBadge" class="detail-featured-badge" style="display:none;">⭐ Featured</span>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="event-detail-body">
+                <h2 id="detailTitle" class="event-detail-title"></h2>
+                <p id="detailDesc" class="event-detail-desc"></p>
+
+                <!-- Info Grid -->
+                <div class="event-detail-info-grid">
+                    <div class="detail-info-item">
+                        <span class="detail-info-icon">📅</span>
+                        <div>
+                            <div class="detail-info-label">Date</div>
+                            <div id="detailDate" class="detail-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="detail-info-item">
+                        <span class="detail-info-icon">📍</span>
+                        <div>
+                            <div class="detail-info-label">Venue</div>
+                            <div id="detailVenue" class="detail-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="detail-info-item">
+                        <span class="detail-info-icon">🏷</span>
+                        <div>
+                            <div class="detail-info-label">Event Type</div>
+                            <div id="detailType" class="detail-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="detail-info-item" id="detailPrizeRow">
+                        <span class="detail-info-icon">🏆</span>
+                        <div>
+                            <div class="detail-info-label">Prize Pool</div>
+                            <div id="detailPrize" class="detail-info-value"
+                                style="color:var(--warning);font-weight:700;"></div>
+                        </div>
+                    </div>
+                    <div class="detail-info-item">
+                        <span class="detail-info-icon">👥</span>
+                        <div>
+                            <div class="detail-info-label">Seats Available</div>
+                            <div id="detailSeats" class="detail-info-value"></div>
+                        </div>
+                    </div>
+                    <div class="detail-info-item" id="detailOrgRow">
+                        <span class="detail-info-icon">🏫</span>
+                        <div>
+                            <div class="detail-info-label">Organizer</div>
+                            <div id="detailOrg" class="detail-info-value"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seats Bar -->
+                <div style="margin:20px 0 24px;">
+                    <div
+                        style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-muted);margin-bottom:6px;">
+                        <span>Registration Progress</span>
+                        <span id="detailPct">0%</span>
+                    </div>
+                    <div style="height:6px;background:var(--dark3);border-radius:3px;overflow:hidden;">
+                        <div id="detailBar"
+                            style="height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:3px;transition:width 0.8s ease;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <button id="detailRegBtn" class="btn-primary" style="flex:1;justify-content:center;">Register
+                        →</button>
+                    <button id="detailWishBtn" class="btn-ghost" style="padding:10px 18px;">🤍 Wishlist</button>
+                </div>
+
+                <div id="detailContactRow"
+                    style="margin-top:16px;font-size:0.8rem;color:var(--text-muted);text-align:center;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
